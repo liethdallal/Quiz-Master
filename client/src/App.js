@@ -1,11 +1,13 @@
 import Quizes from "./components/Quizes"
+import Navbar from './components/Navbar'
 
 function App() {
 
   return (
-    <div className="app-div">
+    <>
+      <Navbar/>
       <Quizes/>
-    </div>
+    </>
   );
 }
 
