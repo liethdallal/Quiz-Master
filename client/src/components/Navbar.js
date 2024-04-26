@@ -1,7 +1,10 @@
+import "../styling/navbar.css"
 function Navbar(){
-<div>
+    return(
+<div id="navbar-div">
     
 </div>
+    )
 }
 
 export default Navbar
