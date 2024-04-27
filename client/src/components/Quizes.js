@@ -1,4 +1,5 @@
 import {useEffect, useState} from 'react'
+import '../styling/quizes.css'
 
 function Quizes() {
   const [quizes, setQuizes] = useState([])
@@ -16,38 +17,17 @@ function Quizes() {
   fetchQuizes()
   }, [])
   return (
-    <div className="quiz-div">
-<h1>Quizzes</h1>
-<ul>
-  {quizes.map((quiz, index) => (
-    <div key={index}>
-      <li>Title: {quiz.title}</li> 
-      <li>Description: {quiz.description}</li>
-      <li>
-        Questions:
-        <ul>
-          {quiz.questions.map((question, qIndex) => (
-            <li key={qIndex}>
-              {question.question}
-              <ul>
-                {question.options.map((option, oIndex) => (
-                  <li key={option._id}>
-                    {option.optionText}
-                    {question.correctAnswer === oIndex ? " (Correct)" : ""}
-                  </li>
-                ))}
-              </ul>
-            </li>
-          ))}
-        </ul>
-      </li>
+  <div id='felxbox-div'>
+    <div className="quizes-div">
+        {quizes.map((quiz, index) => (
+        <div className='quizes-descrip' key={index}>
+          <h1>{quiz.title}</h1> 
+          <h3>{quiz.description}</h3>
+        </div>
+        ))}
     </div>
-  ))}
-</ul>
-
-
-    </div>
-  );
+  </div>
+     );
 }
 
 export default Quizes;
