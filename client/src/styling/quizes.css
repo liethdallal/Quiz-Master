@@ -7,16 +7,16 @@ h3{
 }
 .quizes-div{
 display: flex;
-background-color: aquamarine;
 min-width: 250px;
 max-width: 300px;
 margin-left: 50px;
 margin-top: 30px;
 }
-#flexbox-div{
-
-}
 .quizes-descrip{
 background-color: aquamarine;
 padding: 10px;
+}
+button.quizes-descrip{
+    margin: 30px;
+    cursor: pointer;
 }

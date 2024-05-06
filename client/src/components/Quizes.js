@@ -20,10 +20,10 @@ function Quizes() {
   <div id='felxbox-div'>
     <div className="quizes-div">
         {quizes.map((quiz, index) => (
-        <div className='quizes-descrip' key={index}>
+        <button className='quizes-descrip' key={index}>
           <h1>{quiz.title}</h1> 
           <h3>{quiz.description}</h3>
-        </div>
+        </button>
         ))}
     </div>
   </div>
