@@ -1,33 +1,34 @@
-import {useEffect, useState} from 'react'
-import '../styling/quizes.css'
+import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import '../styling/quizes.css';
 
 function Quizes() {
-  const [quizes, setQuizes] = useState([])
+  const [quizes, setQuizes] = useState([]);
 
-  useEffect( () => {
-    const fetchQuizes = async () =>{
+  useEffect(() => {
+    const fetchQuizes = async () => {
+      const response = await fetch('/api/quizes');
+      const data = await response.json();
 
-    const response = await fetch('/api/quizes')
-    const data = await response.json() 
+      if (response.ok) {
+        setQuizes(data);
+      }
+    };
+    fetchQuizes();
+  }, []);
 
-    if(response.ok){
-      setQuizes(data)
-    }
-  }
-  fetchQuizes()
-  }, [])
   return (
-  <div id='felxbox-div'>
-    <div className="quizes-div">
+    <div id='felxbox-div'>
+      <div className="quizes-div">
         {quizes.map((quiz, index) => (
-        <button className='quizes-descrip' key={index}>
-          <h1>{quiz.title}</h1> 
-          <h3>{quiz.description}</h3>
-        </button>
+          <Link to={`/quiz/${quiz._id}`} key={index} className='quizes-descrip'>
+            <h1>{quiz.title}</h1>
+            <h3>{quiz.description}</h3>
+          </Link>
         ))}
+      </div>
     </div>
-  </div>
-     );
+  );
 }
 
 export default Quizes;

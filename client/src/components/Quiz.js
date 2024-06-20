@@ -1,51 +1,31 @@
-import {useEffect, useState} from 'react'
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 
 function Quiz() {
-  const [quizes, setQuizes] = useState([])
+  const { id } = useParams();
+  const [quiz, setQuiz] = useState(null);
 
-  useEffect( () => {
-    const fetchQuizes = async () =>{
+  useEffect(() => {
+    const fetchQuiz = async () => {
+      const response = await fetch(`/api/quizes/${id}`);
+      const data = await response.json();
 
-    const response = await fetch('/api/quizes')
-    const data = await response.json() 
+      if (response.ok) {
+        setQuiz(data);
+      }
+    };
+    fetchQuiz();
+  }, [id]);
 
-    if(response.ok){
-      setQuizes(data)
-    }
+  if (!quiz) {
+    return <div>Loading...</div>;
   }
-  fetchQuizes()
-  }, [])
+
   return (
-    <div className="quiz-div">
-<h1>Quizzes</h1>
-<ul>
-  {quizes.map((quiz, index) => (
-    <div key={index}>
-      <li>Title: {quiz.title}</li> 
-      <li>Description: {quiz.description}</li>
-      <li>
-        Questions:
-        <ul>
-          {quiz.questions.map((question, qIndex) => (
-            <li key={qIndex}>
-              {question.question}
-              <ul>
-                {question.options.map((option, oIndex) => (
-                  <li key={option._id}>
-                    {option.optionText}
-                    {question.correctAnswer === oIndex ? " (Correct)" : ""}
-                  </li>
-                ))}
-              </ul>
-            </li>
-          ))}
-        </ul>
-      </li>
-    </div>
-  ))}
-</ul>
+    <div>
+      <h1>{quiz.title}</h1>
 
-
+      
     </div>
   );
 }
