@@ -25,7 +25,18 @@ function Quiz() {
     <div>
       <h1>{quiz.title}</h1>
 
+      <p>{quiz.description}</p>
       
+      {quiz.questions && quiz.questions.map((question, qIndex) => (
+        <div key={qIndex}>
+          <h3>{question.question}</h3>
+          <ul>
+            {question.options && question.options.map((option, oIndex) => (
+              <li key={oIndex}>{option.optionText}</li>
+            ))}
+          </ul>
+        </div>
+      ))}
     </div>
   );
 }
