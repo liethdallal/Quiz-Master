@@ -6,6 +6,7 @@ function Quiz() {
   const { id } = useParams();
   const [quiz, setQuiz] = useState(null);
   const [selectedOptions, setSelectedOptions] = useState({});
+  const [score, setScore] = useState(null);
 
   useEffect(() => {
     const fetchQuiz = async () => {
@@ -26,6 +27,23 @@ function Quiz() {
     }));
   };
   
+  const handleDiselectOption = (qIndex) => {
+    setSelectedOptions((prev) => {
+      const newSelectedOptions = { ...prev };
+      delete newSelectedOptions[qIndex];
+      return newSelectedOptions;
+    });
+  };
+
+  const handleSubmit = () => {
+    let correctCount = 0;
+    quiz.questions.forEach((question, qIndex) => {
+      if (selectedOptions[qIndex] === question.correctAnswer) {
+        correctCount++;
+      }
+    });
+    setScore(correctCount);
+  };
 
   if (!quiz) {
     return <div>Loading...</div>;
@@ -42,16 +60,27 @@ function Quiz() {
           <h3 className='quiz-question'>{question.question}</h3>
             {question.options && question.options.map((option, oIndex) => (
               <div
-                key={oIndex}
-                onClick={() => handleOptionClick(qIndex, oIndex)}
-                className={selectedOptions[qIndex] === oIndex ? 'selected' : ''}
-                id='answer-div'
+              key={oIndex}
+              onClick={() =>
+                selectedOptions[qIndex] === oIndex
+                  ? handleDiselectOption(qIndex)
+                  : handleOptionClick(qIndex, oIndex)
+              }
+              className={selectedOptions[qIndex] === oIndex ? 'selected' : ''}
+              id='answer-div'
               >
                 {option.optionText}
               </div>
             ))}
         </div>
       ))}
+           <button onClick={handleSubmit} id='submit'>Submit</button>
+
+          {score !== null && (
+      <div>
+      <h2 id='your-score'>Your Score: {score} / {quiz.questions.length}</h2>
+    </div>
+  )}
     </div>
   );
 }
