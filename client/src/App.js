@@ -1,15 +1,13 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Quizes from "./components/Quizes";
-import Navbar from './components/Navbar';
-import Quiz from './components/Quiz'; // Assuming you have this component created
+import Quizpage from './pages/Quizpage'
+import Homepage from './pages/Homepage';
 
 function App() {
   return (
     <Router>
-      <Navbar />
       <Routes>
-        <Route path="/" element={<Quizes />} />
-        <Route path="/quiz/:id" element={<Quiz />} />
+        <Route path="/" element={<Homepage />} />
+        <Route path="/quiz/:id" element={<Quizpage />} />
       </Routes>
     </Router>
   );

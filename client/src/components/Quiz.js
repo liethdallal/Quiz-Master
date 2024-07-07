@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import '../styling/quiz.css' 
+import '../component-styling/quiz.css' 
 
 function Quiz() {
   const { id } = useParams();

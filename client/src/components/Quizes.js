@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import '../styling/quizes.css';
+import '../component-styling/quizes.css';
 
 function Quizes() {
   const [quizes, setQuizes] = useState([]);

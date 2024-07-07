@@ -1,4 +1,5 @@
-import "../styling/navbar.css"
+import "../component-styling/navbar.css"
+
 function Navbar(){
     return(
 <div id="navbar-div">
