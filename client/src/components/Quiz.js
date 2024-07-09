@@ -1,12 +1,15 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import '../component-styling/quiz.css' 
+import { useNavigate } from 'react-router-dom';
 
 function Quiz() {
   const { id } = useParams();
   const [quiz, setQuiz] = useState(null);
   const [selectedOptions, setSelectedOptions] = useState({});
   const [score, setScore] = useState(null);
+  const [showResults, setShowResults] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchQuiz = async () => {
@@ -43,7 +46,14 @@ function Quiz() {
       }
     });
     setScore(correctCount);
+
+    // Navigate to Resultspage with state
+    navigate('/results', {
+      state: { score: correctCount, totalQuestions: quiz.questions.length }
+    });
+
   };
+
 
   if (!quiz) {
     return <div>Loading...</div>;
@@ -74,13 +84,7 @@ function Quiz() {
             ))}
         </div>
       ))}
-           <button onClick={handleSubmit} id='submit'>Submit</button>
-
-          {score !== null && (
-      <div>
-      <h2 id='your-score'>Your Score: {score} / {quiz.questions.length}</h2>
-    </div>
-  )}
+          <button onClick={handleSubmit}>Submit Quiz</button>
     </div>
   );
 }
