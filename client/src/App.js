@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Quizpage from './pages/Quizpage'
-import Homepage from './pages/Homepage';
-import Resultspage from './pages/Resultspage';
+import Quizpage from './pages/QuizPage/QuizPage'
+import Homepage from './pages/HomePage/HomePage';
+import Resultspage from './pages/ResultsPage/ResultsPage';
 
 function App() {
   return (

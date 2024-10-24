@@ -1,14 +1,13 @@
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import '../component-styling/quiz.css' 
 import { useNavigate } from 'react-router-dom';
+import './quiz.css' 
 
 function Quiz() {
   const { id } = useParams();
   const [quiz, setQuiz] = useState(null);
   const [selectedOptions, setSelectedOptions] = useState({});
   const [score, setScore] = useState(null);
-  const [showResults, setShowResults] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {

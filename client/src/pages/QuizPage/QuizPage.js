@@ -1,5 +1,5 @@
-import Quiz from '../components/Quiz'
-import '../pages-styling/quizpage.css'
+import Quiz from '../../components/Quiz/Quiz'
+import './QuizPage'
 
 function Quizpage(){
     return(

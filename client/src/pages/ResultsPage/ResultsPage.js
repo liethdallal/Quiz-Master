@@ -1,7 +1,7 @@
 // Resultspage.js
 import React from 'react';
 import { useLocation } from 'react-router-dom';
-import '../pages-styling/resultspage.css';
+import './resultspage.css';
 
 function Resultspage() {
   const location = useLocation();
